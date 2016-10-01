@@ -58,8 +58,9 @@ app.get('/search/:name', function(req, res) {
         var artist = item.artists.items[0];
         var getRelatedArtistEmitter = getRelatedArtist(artist.id);
         getRelatedArtistEmitter.on('end', function(item) {
+            artist.related = item.artists;
             res.json(artist);
-            console.log(item);
+            console.log(artist.related);
         });
     });
 
